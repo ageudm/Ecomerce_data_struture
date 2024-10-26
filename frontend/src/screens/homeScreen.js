@@ -1,10 +1,22 @@
-import data from '../../../backend/data.js';
+// import data from '../../../backend/data.js';
 
 
 //=================OBKECTO ECREEN PARA QUE GUARDA O METODO RENDER===============
 const HomeScreen = {
-    render: () => {
-        const {products} = data; //importar a lista de produtos no arquivo data
+    render: async () => {
+       
+        const response = await fetch('http://localhost:5000/api/products', {
+            headers: {
+                'Content-type': 'aplication/json',
+            },
+        })
+
+        if(!response || !response.ok) {
+            return `<div>Erro ao carregar os dados</div>`
+        }
+
+        const products = await response.json();
+
         return `
         <ul class="products">
             ${products.map(product => `

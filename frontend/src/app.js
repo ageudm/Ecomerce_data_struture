@@ -11,7 +11,7 @@ const routes = {
 
 
 //===============ROTAS PARA RENDERIZAR DADOS DAS PAGINAS====================
-const router = () => {
+const router = async () => {
     const request = parseRequestUrl();
     const parseUrl = 
     (request.resource ? `/${request.resource}` : '/') + 
@@ -23,7 +23,7 @@ const router = () => {
 
     //====renderizar os produtos no documento
     const main = document.getElementById('main-container');
-    main.innerHTML = screen.render();
+    main.innerHTML = await screen.render();
 }
 
 //=======================CARREGAR AS PAGINAS NA DOM
